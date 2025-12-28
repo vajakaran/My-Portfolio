@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> Portfolio</title>
+     <!--link to fontawesome for inserting social media icons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" 
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" 
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="style1.css" />
+</head>
+<body>
+
+    <!-- Navbar -->
+    <header>
+        <div class="logo">KARAN</div>
+        <ul class="nav-links">
+            <li><a href="Home.html">Home</a></li>
+            <li><a href="skills.html">Skills</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="Contact.html">Contact</a></li>
+            
+        </ul>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="text-section">
+            <h1><span>Hello! I Am </span></h1><h1><!-- Element to contain animated typing -->
+                     <span id="element"></span> </h1>
+                      <p>Building digital experiences that merge creativity with technology</p>
+                      <p>Specializing in modern web development </p>
+                    </div>
+           
+          <div class="hero-image">
+                    <img src="karan_image.png" alt="Profile"  class="profile-img">
+                </div>
+       
+        </div>
+    </section>
+
+    <!--skills section-->
+             <section id="skills" class="skills">
+                <h2>Technical Expertise</h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <i class="fa-notdog fa-solid fa-code"></i>
+                        <h3>Frontend Development</h3>
+                        <p> HTML5, CSS3, javaScript, React</p>
+                        </div>
+                        <div class="skill-card">
+                            <i class="fa-solid fa-server"></i>
+                            <h3>Backend Development</h3>
+                            <P>Python, Java, MYSQL</P>
+                        </div>
+                        </div>
+             </section>
+             <!--Footer-->
+             <footer>
+                <p>2025 All rights reserved.</p>
+                <div class="social-links">
+                    <a href="#"> <i class="fa-brands fa-github"></i></a>
+                     <a href="#"> <i class="fa-sharp fa-solid fa-envelope"></i></a>
+                      <a href="#"><i class="fa-brands fa-whatsapp"></i> </a>
+                       <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                       <a href="#"> <i class="fa-brands fa-instagram"></i></a>
+                       
+                                </div>
+             </footer>
+
+    <!--auto type-->
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+  
+ <!-- Setup and start animation! -->
+<script>
+    var typed = new Typed('#element', {
+    strings: ['Vaja Karan', 'App Developer', 'Web Developer', 'Full stak Developer'],
+    typeSpeed: 50,
+     });
+<!--contact-->
+ document.getElementById("contactForm").addEventListener("submit", function(event) {
+        event.preventDefault();  
+
+        let formData = new FormData(this);
+
+        fetch("sendMail.php", {
+            method: "POST",
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("popup").style.display = "flex";
+            document.getElementById("contactForm").reset();
+        });
+    });
+
+    document.getElementById("close-btn").onclick = function () {
+        document.getElementById("popup").style.display = "none";
+    };
+
+    </script>
+
+</body>
+</html>

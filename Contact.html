@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Me</title>
+    <link rel="stylesheet" href="contact.css" />
+   
+</head>
+<body>
+     <!-- Navbar -->
+    <header>
+        <div class="logo">KARAN</div>
+        <ul class="nav-links">
+            <li><a href="Home.html">Home</a></li>
+            <li><a href="skills.html">Skills</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="Contact.html" >Contact</a></li>
+        </ul>
+    </header>
+
+<div class="contact-container">
+    <div class="left">
+        <h1>Contact <span>Me</span></h1>
+        <h3>Let's Work Together</h3>
+        <p>Feel free to send me a message for any project or collaboration.</p>
+    </div>
+
+    <div class="right">
+        <form id="contactForm">
+            <input type="text" name="name" placeholder="Enter Your Name" required>
+            <input type="email" name="email" placeholder="Enter Your Email" required>
+            <input type="text" name="subject" placeholder="Enter Your Subject" required>
+            <textarea name="message" rows="6" placeholder="Enter Your Message" required></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</div>
+
+<!-- Popup -->
+<div id="popup">
+    <div id="popup-box">
+        Message Sent Successfully 🎉
+        <br>
+        <button id="close-btn">OK</button>
+    </div>
+</div>
+
+<script>
+    document.getElementById("contactForm").addEventListener("submit", function(event) {
+        event.preventDefault();  
+
+        let formData = new FormData(this);
+
+        fetch("sendMail.php", {
+            method: "POST",
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("popup").style.display = "flex";
+            document.getElementById("contactForm").reset();
+        });
+    });
+
+    document.getElementById("close-btn").onclick = function () {
+        document.getElementById("popup").style.display = "none";
+    };
+</script>
+
+</body>
+</html>
